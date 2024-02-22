@@ -10,6 +10,10 @@ const {LOCAL_PORT} = process.env;
 
 
 const app = express();
+
+app.use(cors({
+    origin : "http://localhost:5173"
+}))
 app.use(
     "/img",
     express.static(path.join(process.cwd(), "public/assets/images"))

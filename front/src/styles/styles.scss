@@ -1,0 +1,23 @@
+body{
+    margin:0;
+}
+header, footer{
+    background: rgb(255 193 7 / 55%);
+    padding: 3em;
+    // display: flex;
+    // justify-content: center;
+}
+.header-logo{
+    width: 100%;
+}
+
+footer{
+    text-align: center;
+    .footer-logo{
+        width: 30%;
+    }
+    .social-media-links{
+    display: flex;
+    justify-content: space-evenly;
+    }
+}
