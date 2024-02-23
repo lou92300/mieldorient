@@ -1,23 +1,244 @@
-body{
-    margin:0;
+body {
+  margin: 0;
 }
-header, footer{
-    background: rgb(255 193 7 / 55%);
-    padding: 3em;
-    // display: flex;
-    // justify-content: center;
+header,
+footer {
+  background: rgb(255 193 7 / 55%);
+  padding: 3em;
+  box-shadow:  2Px 0Px 9Px -2Px;
 }
-.header-logo{
+header {
+  .header-logo {
     width: 100%;
+  }
+  .menu-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    button {
+      padding: 1em 6em;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 1px 1px 7Px 1Px;
+      z-index: 1;
+    }
+    nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgb(253, 161, 0);
+      border-radius: 0px 0px 5px 5px;
+      margin-top: -3px;
+      a {
+        text-decoration: none;
+        color: black;
+        padding: 0.5em;
+      }
+    }
+  }
 }
 
-footer{
-    text-align: center;
-    .footer-logo{
-        width: 30%;
-    }
-    .social-media-links{
+footer {
+  text-align: center;
+  .footer-logo {
+    width: 30%;
+  }
+  .social-media-links {
     display: flex;
     justify-content: space-evenly;
+  }
+}
+//************************ ARTICLES *************************/
+.articles {
+  h1 {
+    text-align: center;
+  }
+  input {
+    margin: auto;
+    display: flex;
+    width: 90%;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  ul {
+    list-style: none;
+    text-align: center;
+    padding: 0px;
+    li {
+      background: rgb(255 193 7 / 32%);
+      img {
+        width: 90%;
+        margin: 4%;
+        border-radius: 5px 5px 5px 5px;
+      }
+      div {
+        .product-name{
+          font-weight: bold;
+        }
+        .product-description{
+          margin: 1em;
+        }
+        .price {
+          padding: 1em;
+        }
+      }
     }
+    button {
+      padding: 1em;
+      border: none;
+      border-radius: 6px;
+      background: rgb(253, 161, 0);
+      box-shadow: 1px 1px 7Px 1Px;
+    }
+  }
+}
+
+/******************* MODAL *****************/
+/*******************************************/
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.cart-container {
+  width: 90%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  .cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    button {
+      border: none;
+      padding: 1em;
+      border-radius: 7px;
+      background: rgb(253, 161, 0);
+      box-shadow: 0Px 1Px 3Px 0Px;
+    }
+  }
+  .cart-items {
+    display: grid;
+    gap: 20px;
+    overflow-y: auto;
+    max-height: 400px;
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      img {
+        width: 30%;
+      }
+      div {
+        .delete-btn {
+          padding: 1em;
+          background: rgb(237, 18, 18);
+          border: none;
+          border-radius: 7px;
+          box-shadow: 0Px 1Px 3Px 0Px;
+        }
+      }
+    }
+  }
+  .cart-total {
+    .payment-btn {
+      border: none;
+      padding: 1em;
+      border-radius: 7px;
+      background: lightgreen;
+      box-shadow: 0Px 1Px 3Px 0Px;
+    }
+  }
+}
+
+/****************** inscription ************/
+/*******************************************/
+
+.confirmation-slide {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  animation: slideIn 0.5s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/****************** connexion *************/
+/******************************************/
+
+.container-connexion {
+  padding: 2em;
+  background: rgb(253, 161, 0);
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4em;
+  box-shadow: 0Px 1Px 3Px 0Px;
+  form {
+    display: flex;
+    flex-direction: column;
+    label {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      label {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    button {
+      margin: 1em;
+      border: none;
+      padding: 1em;
+      border-radius: 7px;
+      box-shadow: 1px 1px 7Px 1Px;
+    }
+  }
+  .confirmation-slide {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    animation: slideIn 0.5s ease-in-out forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
 }
