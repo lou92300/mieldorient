@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { login, register, logout, checkToken } from "../controller/auth.js";
+import { login, register, logout, checkToken, updateUser } from "../controller/auth.js";
 import auth from "../middlewares/auth.js"
 
 const router = Router()
@@ -8,6 +8,7 @@ const router = Router()
 
 router.post("/register",register)
 router.post("/login",login)
+// router.patch("/updateUser/:id",auth,updateUser)
 
 router.get("/logout",logout)
 router.get("/check-token", auth, checkToken)

@@ -3,6 +3,9 @@ import {getArticleById, addArticle , modifyArticle , deleteArticle} from "../con
 import {getStats} from "../controller/admin/index.js"
 import {createCategory, getCategoryById, updateCategory , deleteCategory} from "../controller/admin/categories.js"
 
+
+// initial http://localhost:9005/api/v1/admin
+
 const router = Router()
 // statistique //
 router.get("/stats",getStats)

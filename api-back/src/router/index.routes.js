@@ -4,6 +4,7 @@ import auth from "../middlewares/auth.js"
 import postRouter from "./auth.routes.js"
 import getRouter from "./app.routes.js"
 import adminRouter from "./admin.routes.js"
+import userRouter from "./user.routes.js"
 
 
 const router = Router();
@@ -13,7 +14,7 @@ router.use(getRouter)
 
 
 router.use("/admin",adminAuth,adminRouter)
-router.use("/utilisateur",auth)
+router.use("/utilisateur",auth, userRouter )
 
 
 export default router;

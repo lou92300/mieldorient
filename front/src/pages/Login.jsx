@@ -32,13 +32,11 @@ const Login = () => {
       if (response.ok) {
         const resJson = await response.json();
         console.log(resJson);
-        // dispatch(updateStatus(resJson));
-        // dispatch(updateStatus({ ...resJson, username: resJson.username }));
         dispatch(updateStatus({ ...resJson ,username : resJson.username, role : resJson.role }));
         setShowConfirmation(true);
     
           if (resJson.role === 'admin') {
-            // console.log(resJson)
+    
             navigate('/dashboard');
           } else {
             navigate('/articles');
