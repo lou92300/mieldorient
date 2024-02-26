@@ -41,6 +41,45 @@ const register = async (req, res) => {
     }
 };
 
+// const login = async (req, res) => {
+//     try {
+//         const { username, password } = req.body;
+
+//         // Validation des entrées (utilisez express-validator par exemple)
+
+//         // Vérifier si l'utilisateur existe
+//         const [existingUsers] = await pool.execute("SELECT * FROM user WHERE username = ?", [username]);
+
+//         if (existingUsers.length > 0) {
+//             // Comparer les mots de passe hachés
+//             const hashedPassword = existingUsers[0].password;
+//             const passwordMatch = await bcrypt.compare(password, hashedPassword);
+
+//             if (passwordMatch) {
+//                 // Authentification réussie
+//                 // Créer un token avec le nom d'utilisateur et le rôle
+//                 const { username, role , ID} = existingUsers[0];
+//                 const token = jwt.sign({ username, role, ID }, process.env.SECRET_TOKEN, { 
+//                     algorithm: "HS256",
+//                     allowInsecureKeySizes: true,
+//                     expiresIn: '1h' });
+//                 console.log(token, 'test')
+//                 // Envoyer le token avec la réponse
+//                 res.cookie("TK_AUTH", token, {
+//                     sameSite: "lax",
+//                     httpOnly: true,
+//                     maxAge: 3600000 }); // 1 heure
+//                 return res.json({ message: "Authentification réussie" , role: role , username : username, ID : ID});
+//             }
+//         }
+
+//         // Authentification échouée
+//         res.status(401).json({ message: "Nom d'utilisateur ou mot de passe incorrect" });
+//     } catch (error) {
+//         console.error("Erreur serveur :", error);
+//         res.status(500).json({ message: "Erreur serveur, veuillez réessayer" });
+//     }
+// };
 const login = async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -58,18 +97,24 @@ const login = async (req, res) => {
             if (passwordMatch) {
                 // Authentification réussie
                 // Créer un token avec le nom d'utilisateur et le rôle
-                const { username, role } = existingUsers[0];
-                const token = jwt.sign({ username, role }, process.env.SECRET_TOKEN, { 
-                    algorithm: "HS256",
-                    allowInsecureKeySizes: true,
+                const { username, role , ID} = existingUsers[0];
+            
+                const token = jwt.sign({ username, role, ID }, process.env.SECRET_TOKEN, { 
+                    // algorithm: "HS256",
+                    // allowInsecureKeySizes: true,
                     expiresIn: '1h' });
-                console.log(token, 'test')
-                // Envoyer le token avec la réponse
+                    console.log(token)
+
+                // Définir le cookie dans la réponse
                 res.cookie("TK_AUTH", token, {
                     sameSite: "lax",
                     httpOnly: true,
-                    maxAge: 3600000 }); // 1 heure
-                return res.json({ message: "Authentification réussie" , role: role , username : username});
+                    maxAge: 3600000, // 1 heure
+                    secure: true
+                });
+
+                // Envoyer la réponse avec les informations d'utilisateur et le message de réussite
+                return res.json({ message: "Authentification réussie" , role: role , username : username, ID : ID});
             }
         }
 

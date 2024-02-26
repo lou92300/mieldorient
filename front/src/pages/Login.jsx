@@ -32,7 +32,7 @@ const Login = () => {
       if (response.ok) {
         const resJson = await response.json();
         console.log(resJson);
-        dispatch(updateStatus({ ...resJson ,username : resJson.username, role : resJson.role }));
+        dispatch(updateStatus({ ...resJson ,username : resJson.username, role : resJson.role , id : resJson.id }));
         setShowConfirmation(true);
     
           if (resJson.role === 'admin') {

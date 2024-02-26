@@ -6,7 +6,7 @@ import { Router } from "express";
 
 const router = Router()
 
-router.patch("/updateUser/:id",auth,updateUser)
+router.patch("/updateUser/:id",updateUser)
 
 
 export default router

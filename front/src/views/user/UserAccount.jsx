@@ -1,48 +1,10 @@
-// import React, { useState } from 'react';
-// import { useSelector } from 'react-redux';
-
-// const UserAccount = () => {
-//   // Sélectionnez les informations de l'utilisateur à partir de l'état global
-//   const userInfo = useSelector((state) => state.user.userInfo);
-//   const { username, email, address, phoneNumber } = userInfo;
-
-//   // État pour le mode édition du profil
-//   const [editMode, setEditMode] = useState(false);
-//   const [updatedUserData, setUpdatedUserData] = useState({ ...userInfo });
-
-//   // Fonction de mise à jour des données utilisateur
-//   const handleUpdateProfile = () => {
-//     // Logique pour mettre à jour les données utilisateur (à implémenter)
-//     // setUpdatedUserData(updatedData);
-//     // Mettre à jour les informations de l'utilisateur via l'action et le reducer appropriés
-//     // dispatch(updateUserData(updatedData));
-//     setEditMode(false); // Sortir du mode édition après la mise à jour
-//   };
-
-//   return (
-//     <div>
-//       <h2>Mon compte</h2>
-//       <div>
-//         {/* Affichez les informations de l'utilisateur */}
-//         <h3>Username: {editMode ? <input type="text" value={updatedUserData.username} onChange={(e) => setUpdatedUserData({ ...updatedUserData, username: e.target.value })} /> : username}</h3>
-//         <p>Email: {email}</p>
-//         <p>Address: {editMode ? <input type="text" value={updatedUserData.address} onChange={(e) => setUpdatedUserData({ ...updatedUserData, address: e.target.value })} /> : address}</p>
-//         <p>Phone Number: {editMode ? <input type="text" value={updatedUserData.phoneNumber} onChange={(e) => setUpdatedUserData({ ...updatedUserData, phoneNumber: e.target.value })} /> : phoneNumber}</p>
-//         {/* Affichez le bouton d'édition du profil ou le bouton de sauvegarde en fonction du mode édition */}
-//         {editMode ? <button onClick={handleUpdateProfile}>Save Changes</button> : <button onClick={() => setEditMode(true)}>Edit Profile</button>}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default UserAccount;
-
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const UserAccount = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
   const [userData, setUserData] = useState({ ...userInfo });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -51,18 +13,23 @@ const UserAccount = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
     try {
-      const response = await fetch('http://localhost:9005/api/v1/updateUser', {
-        method: 'PUT', // or 'PATCH' depending on your backend implementation
+      const response = await fetch(`http://localhost:9005/api/v1/utilisateur/updateUser/${userInfo.ID}`, {
+        method: 'PATCH',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
+        credentials: 'include' // Ajout de l'option pour inclure les cookies dans la demande
       });
       const data = await response.json();
       console.log(data); // handle success or error response from server
+      setIsLoading(false);
     } catch (error) {
       console.error('Error updating user data:', error);
+      setIsLoading(false);
     }
   };
 
@@ -78,8 +45,15 @@ const UserAccount = () => {
           Email:
           <input type="email" name="email" value={userData.email} onChange={handleInputChange} />
         </label>
-        {/* Add more input fields for other user data */}
-        <button type="submit">Save Changes</button>
+        <label>
+          First Name:
+          <input type="text" name="firstname" value={userData.firstname} onChange={handleInputChange} />
+        </label>
+        <label>
+          Password:
+          <input type="password" name="password" value={userData.password} onChange={handleInputChange} />
+        </label>
+        <button type="submit" disabled={isLoading}>{isLoading ? 'Saving...' : 'Save Changes'}</button>
       </form>
     </div>
   );

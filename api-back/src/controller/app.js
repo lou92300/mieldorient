@@ -7,7 +7,7 @@ const allArticles = async (req, res) => {
 
         // Utilisez le pool pour exécuter la requête
         const [result] = await pool.execute(queryArticle);
-        console.log(result)
+        
         // Renvoyez les résultats en tant que réponse JSON
         res.status(200).json( result );
     } catch (error) {
