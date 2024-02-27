@@ -1,7 +1,9 @@
 import React from 'react'
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
-function Addcategory() {
+function AddCategory() {
     const navigate = useNavigate();
     const label = useRef(null);
 
@@ -34,4 +36,4 @@ function Addcategory() {
   )
 }
 
-export default Addcategory
+export default AddCategory

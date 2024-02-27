@@ -26,25 +26,30 @@ const Login = () => {
         headers: {
           'Content-Type': 'application/json'
         },
+        credentials : "include",
         body: JSON.stringify(data)
       });
      
       if (response.ok) {
         const resJson = await response.json();
         console.log(resJson);
-        dispatch(updateStatus({ ...resJson ,username : resJson.username, role : resJson.role , id : resJson.id }));
+        dispatch(updateStatus({ ...resJson ,username : resJson.username, role : resJson.role , id : resJson.id , firstname: resJson.firstname, email : resJson.email}));
         setShowConfirmation(true);
     
           if (resJson.role === 'admin') {
     
             navigate('/dashboard');
-          } else {
-            navigate('/articles');
-          }
+          } 
+          // else {
+          //   navigate('/articles');
+          // }
 
       } else {
         console.error('Échec de la connexion.');
       }
+      setTimeout(() => {
+        navigate('/articles');
+      }, 3000);
     } catch (error) {
       console.error('Erreur lors de la requête fetch:', error);
     }

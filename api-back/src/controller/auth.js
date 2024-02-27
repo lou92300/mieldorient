@@ -97,7 +97,7 @@ const login = async (req, res) => {
             if (passwordMatch) {
                 // Authentification réussie
                 // Créer un token avec le nom d'utilisateur et le rôle
-                const { username, role , ID} = existingUsers[0];
+                const { username, role , ID, email , firstname } = existingUsers[0];
             
                 const token = jwt.sign({ username, role, ID }, process.env.SECRET_TOKEN, { 
                     // algorithm: "HS256",
@@ -110,11 +110,11 @@ const login = async (req, res) => {
                     sameSite: "lax",
                     httpOnly: true,
                     maxAge: 3600000, // 1 heure
-                    secure: true
+                    secure: false
                 });
 
                 // Envoyer la réponse avec les informations d'utilisateur et le message de réussite
-                return res.json({ message: "Authentification réussie" , role: role , username : username, ID : ID});
+                return res.json({ message: "Authentification réussie" , role: role , username : username, ID : ID , email : email , firstname: firstname  });
             }
         }
 

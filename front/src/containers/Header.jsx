@@ -40,10 +40,10 @@ function Header() {
               <NavLink to="/articles">Articles</NavLink>
               {isLoggedIn ? (
                 <>
-                {role === "utilisateur" && (
+                {role === "utilisateur"  && (
                   <NavLink to ="/user-account">Mon compte</NavLink>
                 )}
-                  <span>Connecté</span>
+                  {/* <span>Connecté</span> */}
                   <button onClick={handleLogoutClick}>Déconnexion</button>
                 </>
               ) : (

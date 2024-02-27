@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 const authenticateJWT = (req, res, next) => {
     console.log("authenticateJWT")
     console.log(req.cookies)
+    console.log(req.signedCookies)
+    console.log(req.cookie)
     const TOKEN = req.cookies.TK_AUTH;
     console.log(TOKEN);
     if(!TOKEN) {

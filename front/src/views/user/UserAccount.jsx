@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import "./style/styles.scss"
+
 
 const UserAccount = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
   const [userData, setUserData] = useState({ ...userInfo });
   const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,17 +29,25 @@ const UserAccount = () => {
         credentials: 'include' // Ajout de l'option pour inclure les cookies dans la demande
       });
       const data = await response.json();
-      console.log(data); // handle success or error response from server
+      console.log(data)
+      if (response.ok) {
+        setSuccessMessage('Modifications enregistrées avec succès.');
+      } else {
+        setErrorMessage(data.message); // Assuming server returns an error message
+      }
       setIsLoading(false);
     } catch (error) {
       console.error('Error updating user data:', error);
+      setErrorMessage('An error occurred while saving changes.');
       setIsLoading(false);
     }
   };
 
   return (
-    <div>
-      <h2>User Account</h2>
+    <div className='account-container'>
+      <h2>Mon Compte</h2>
+      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
         <label>
           Username:
