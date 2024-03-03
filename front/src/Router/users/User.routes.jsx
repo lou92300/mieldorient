@@ -10,7 +10,7 @@ import Register from "../views/Auth/Register";
 import Login from "../views/Auth/Login";
 import PrivacyPolicy from "../views/user/PrivacyPolicy";
 import TermsOfUse from "../views/user/TermsOfUse";
-import requireAuth from "../HOC/ProtectedUserRoutes";
+import requireAuth from "../../HOC/ProtectedUserRoutes";
 
 function UserRoutes() {
 

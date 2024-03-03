@@ -41,15 +41,15 @@ const Login = () => {
             navigate('/dashboard');
           } 
           // else {
-          //   navigate('/articles');
-          // }
+            //   navigate('/articles');
+            // }
+            else setTimeout(() => {
+              navigate('/articles');
+            }, 3000);
 
       } else {
         console.error('Échec de la connexion.');
       }
-      setTimeout(() => {
-        navigate('/articles');
-      }, 3000);
     } catch (error) {
       console.error('Erreur lors de la requête fetch:', error);
     }
@@ -80,7 +80,7 @@ const Login = () => {
       </form>
       {showConfirmation && (
         <div className="confirmation-slide">
-          Connexion réussie!
+          Connexion réussie!   
         </div>
       )}
     </div>

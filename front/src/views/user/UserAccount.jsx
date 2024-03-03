@@ -37,8 +37,8 @@ const UserAccount = () => {
       }
       setIsLoading(false);
     } catch (error) {
-      console.error('Error updating user data:', error);
-      setErrorMessage('An error occurred while saving changes.');
+      console.error('erreur lors du télèchargement des données', error);
+      setErrorMessage('impossible de sauvegarder les changements');
       setIsLoading(false);
     }
   };

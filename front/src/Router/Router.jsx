@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Article from './pages/Article';
-import Registration from './pages/Registration';
-import Login from './pages/Login';
-import Dashboard from './views/admin/Dashboard';
-import UserAccount from './views/user/UserAccount';
-import AddCategory from './views/admin/Dataslist/AddCategory';
+import Article from '../pages/Article';
+import Registration from '../pages/Registration';
+import Login from '../pages/Login';
+import Dashboard from '../views/admin/Dashboard';
+import UserAccount from '../views/user/UserAccount';
+import AddCategory from '../views/admin/Dataslist/AddCategory';
+import AddArticles from '../views/admin/Dataslist/AddArticles';
+import Statistiques from '../views/admin/Dataslist/Statistiques';
 
 const Router = () => {
   const location = useLocation();
@@ -61,7 +63,13 @@ const Router = () => {
       <Route path="/connexion" element={<Login />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/user-account" element={<UserAccount />} />
-      {role === "admin" && <Route path="/admin/add-category" element={<AddCategory />} />}
+      {role === "admin" && (
+      <>
+        <Route path="/admin/add-category" element={<AddCategory />} />
+        <Route path="/admin/add-articles" element={<AddArticles />} />
+        <Route path="/admin/statistiques" element={<Statistiques />} />
+      </>
+    )}
     </Routes>
   );
 };

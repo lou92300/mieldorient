@@ -1,6 +1,5 @@
 import logo from "../assets/img/logo.png";
-import { useState } from "react";
-import React, { useEffect } from "react";
+import {useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLogout } from "../store/slice/userSlice"; // Importez votre action de déconnexion

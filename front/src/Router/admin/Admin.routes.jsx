@@ -2,12 +2,12 @@ import { Routes, Route } from "react-router-dom";
 
 import AdminLayout from "../views/layout/AdminLayout";
 import Admin from "../views/admin/Home";
-import requireAuth from "../HOC/ProtectedAdminRoutes";
+import requireAuth from "../../HOC/ProtectedAdminRoutes";
 import Datas from "../views/admin/Datas";
 import Characters from "../views/admin/DatasList/Characters";
 import Articles from "../views/admin/DatasList/Articles";
 import Categories from "../views/admin/DatasList/Categories";
-import AddCategory from "../views/admin/DatasList/AddCategory";
+import AddCategory from "../../views/admin/Dataslist/AddCategory";
 import Users from "../views/admin/DatasList/Users";
 import UpdateCategory from "../views/admin/DatasList/UpdateCategory";
 
