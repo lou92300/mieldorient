@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import "./style/styles.scss"
 
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import AddAddressForm from '../../components/user/Address';
 
 const UserAccount = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -9,6 +9,7 @@ const UserAccount = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +18,10 @@ const UserAccount = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!showConfirmation) {
+      setShowConfirmation(true);
+      return; // Pas besoin de continuer tant que la confirmation n'est pas donnée
+    }
     setIsLoading(true);
 
     try {
@@ -36,10 +41,12 @@ const UserAccount = () => {
         setErrorMessage(data.message); // Assuming server returns an error message
       }
       setIsLoading(false);
+      setShowConfirmation(false); // Réinitialiser le statut de la confirmation
     } catch (error) {
-      console.error('erreur lors du télèchargement des données', error);
-      setErrorMessage('impossible de sauvegarder les changements');
+      console.error('erreur lors du téléchargement des données', error);
+      setErrorMessage('Impossible de sauvegarder les changements');
       setIsLoading(false);
+      setShowConfirmation(false); // Réinitialiser le statut de la confirmation
     }
   };
 
@@ -50,7 +57,7 @@ const UserAccount = () => {
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
         <label>
-          Username:
+          Pseudo:
           <input type="text" name="username" value={userData.username} onChange={handleInputChange} />
         </label>
         <label>
@@ -58,15 +65,23 @@ const UserAccount = () => {
           <input type="email" name="email" value={userData.email} onChange={handleInputChange} />
         </label>
         <label>
-          First Name:
+          Prénom:
           <input type="text" name="firstname" value={userData.firstname} onChange={handleInputChange} />
         </label>
         <label>
-          Password:
+          Mot de passe:
           <input type="password" name="password" value={userData.password} onChange={handleInputChange} />
         </label>
-        <button type="submit" disabled={isLoading}>{isLoading ? 'Saving...' : 'Save Changes'}</button>
+        <button type="submit" disabled={isLoading}>{isLoading ? 'Sauvegarde en cours...' : 'Sauvegarder'}</button>
+        {showConfirmation && (
+          <div className="confirmation-dialog">
+            <p>Voulez-vous vraiment sauvegarder les modifications ?</p>
+            <button onClick={() => setShowConfirmation(false)}>Annuler</button>
+            <button type="submit">Confirmer</button>
+          </div>
+        )}
       </form>
+      <AddAddressForm userId={userInfo.ID} />
     </div>
   );
 };

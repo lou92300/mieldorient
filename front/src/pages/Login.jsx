@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateStatus } from '../store/slice/userSlice';
@@ -57,6 +57,7 @@ const Login = () => {
 
   return (
     <div className='container-connexion'>
+      <h2>Connexion</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Nom d'utilisateur:

@@ -42,6 +42,11 @@ function Header() {
                 {role === "utilisateur"  && (
                   <NavLink to ="/user-account">Mon compte</NavLink>
                 )}
+                {
+                  role === "admin" && (
+                    <NavLink to ="/dashboard">Dashboard</NavLink>
+                  )
+                }
                   {/* <span>Connecté</span> */}
                   <button onClick={handleLogoutClick}>Déconnexion</button>
                 </>
