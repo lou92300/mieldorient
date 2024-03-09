@@ -1,44 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
       username,
-      password
+      password,
     };
 
     try {
-      const response = await fetch('http://localhost:9005/api/v1/register', {
-        method: 'POST',
+      const response = await fetch("http://localhost:9005/api/v1/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
-        console.log('Inscription réussie!');
+        console.log("Inscription réussie!");
         setShowConfirmation(true);
-        // Rediriger l'utilisateur vers une page de confirmation ou de connexion
+        setTimeout(() => {
+          navigate("/connexion");
+        }, 2000);
       } else {
         const errorMessage = await response.json();
         throw new Error(errorMessage.message);
       }
     } catch (error) {
       setError(error.message);
-      console.error('Erreur lors de l\'inscription :', error);
+      console.error("Erreur lors de l'inscription :", error);
     }
   };
 
   return (
-    <div className='container-connexion'>
+    <div className="container-connexion">
       <h2>Inscription</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -66,9 +70,7 @@ const Register = () => {
         <button type="submit">S'inscrire</button>
       </form>
       {showConfirmation && (
-        <div className="confirmation-slide">
-          Inscription réussie!
-        </div>
+        <div className="confirmation-slide">Inscription réussie!</div>
       )}
       {error && <p>{error}</p>}
     </div>
