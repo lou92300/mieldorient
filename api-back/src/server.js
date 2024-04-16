@@ -11,6 +11,7 @@ const {LOCAL_PORT} = process.env;
 
 app.use(cookieParser())
 
+app.use(express.urlencoded({ extended: true }));
 app.use
     (cors({
     origin : "http://localhost:5173",
@@ -25,7 +26,6 @@ app.use(
 );
 app.use(express.json());
 
-app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1",router)
 

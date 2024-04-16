@@ -2,7 +2,7 @@ import pool from "../../config/database.js";
 
 const getStats = async (req, res) => {
     try {
-        // Requête pour obtenir le total des utilisateurs
+        
         const queryTotalUsers = `
             SELECT COUNT(*) AS total_users 
             FROM user;
@@ -10,21 +10,30 @@ const getStats = async (req, res) => {
         const [totalUsersResult] = await pool.query(queryTotalUsers);
         const totalUsers = totalUsersResult[0].total_users;
 
-        // Requête pour obtenir les utilisateurs avec leur nom d'utilisateur et leur prénom
+       
         const queryUser = `
-            SELECT username, 
-                   firstname 
-            FROM user;
+            SELECT u.username, 
+                   u.firstname,
+                   u.email,
+                   a.country,
+                   a.city,
+                   a.zipcode,
+                   a.number,
+                   a.street
+            FROM user u
+            LEFT JOIN address a ON u.id = a.user_id;
         `;
+       
         const [userData] = await pool.query(queryUser);
+        
 
-        // Requête pour obtenir les catégories de produits
+       
         const queryCategory = `
             SELECT * FROM category;
         `;
         const [categoryData] = await pool.query(queryCategory);
 
-        // Requête pour obtenir les produits avec leur nom, leur prix, leur stock et leur catégorie
+        
         const queryProduct = `
             SELECT name, price, stock, category_id
             FROM product;
@@ -43,4 +52,4 @@ const getStats = async (req, res) => {
     }
 };
 
-export {getStats}
+export { getStats };

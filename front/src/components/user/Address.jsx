@@ -1,6 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const AddAddressForm = ({ userId }) => {
+    const [userData, setUserData] = useState({
+        country: '',
+        city: '',
+        zipcode: '',
+        number: '',
+        street: ''
+    });
+
+    useEffect(() => {
+        async function fetchUserAddress() {
+            try {
+                const response = await fetch(`http://localhost:9005/api/v1/utilisateur/userAddress/${userId}`, {
+                    method: 'GET',
+                    credentials: "include"
+                });
+
+                if (response.ok) {
+                    const userData = await response.json();
+                    setUserData(userData[0]); // Mettre à jour les données utilisateur avec les données récupérées de l'API
+                } else {
+                    throw new Error('Erreur lors de la récupération de l\'adresse de l\'utilisateur');
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération de l\'adresse de l\'utilisateur :', error.message);
+            }
+        }
+
+        fetchUserAddress();
+    }, [userId]);
+
     const [address, setAddress] = useState({
         country: '',
         city: '',
@@ -8,6 +38,10 @@ const AddAddressForm = ({ userId }) => {
         number: '',
         street: ''
     });
+
+    useEffect(() => {
+        setAddress(userData);
+    }, [userData]);
 
     const handleChange = (e) => {
         setAddress({
@@ -24,18 +58,18 @@ const AddAddressForm = ({ userId }) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                credentials:"include",
+                credentials: "include",
                 body: JSON.stringify(address)
+                
             });
-            
+            console.log(response)
+
             if (!response.ok) {
                 throw new Error('Erreur lors de l\'ajout de l\'adresse');
             }
 
-            
             console.log('Adresse ajoutée avec succès');
         } catch (error) {
-           
             console.error('Erreur lors de l\'ajout de l\'adresse :', error.message);
         }
     };
@@ -65,7 +99,6 @@ const AddAddressForm = ({ userId }) => {
             </label>
             <button type="submit">Ajouter l'adresse</button>
         </form>
-        
     );
 };
 

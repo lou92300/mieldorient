@@ -13,6 +13,7 @@ function Statistiques() {
           },
           credentials: "include"
         });
+        console.log(response)
 
         if (!response.ok) {
           throw new Error('Erreur lors de la récupération des données');
@@ -30,14 +31,38 @@ function Statistiques() {
   }, []);
 
   return (
-    <div>
+    <div className='stats-container'>
       <h1>Statistiques</h1>
       {stats ? (
         <div>
-          {/* Afficher les données récupérées */}
-          <p>Nombre d'utilisateurs {stats.totalUsers}</p>
-          <p>Nombre d'utilisateurs {stats.users}</p>
-          {/* Affichez d'autres données selon la structure de votre réponse */}
+          <p>Nombre d'utilisateurs: {stats.users.length}</p>
+          <ul>
+            {stats.users.map((user, index) => (
+              <li key={index}>
+                Pseudo: {user.username},
+                Prénom: {user.firstname ? user.firstname : 'N/A'},
+                Email:{user.email},
+                Pays:{user.country}
+              </li>
+            ))}
+          </ul>
+          <p>Nombre total de catégories: {stats.categories.length}</p>
+          <ul>
+            {stats.categories.map((category, index) => (
+              <li key={index}>
+                Nom de la catégorie: {category.name}
+              </li>
+            ))}
+          </ul>
+          <p>Nombre de produits: {stats.products.length}</p>
+          <ul>
+            {stats.products.map((product, index) => (
+              <li key={index}>
+              
+                Nom du produit: {product.name}, Prix: {product.price}, Stock: {product.stock}
+              </li>
+            ))}
+          </ul>
         </div>
       ) : (
         <p>Chargement des statistiques...</p>
@@ -47,3 +72,5 @@ function Statistiques() {
 }
 
 export default Statistiques;
+
+

@@ -5,11 +5,10 @@ import auth from '../middlewares/auth.js'
 
 const router = Router();
 
+//initial route : http://localhost:9005/api/v1/
+
 router.get("/articles",allArticles);
 router.get("/categories",allCategories)
-// router.post("/articles/rajouter",addArticle)
-// router.put("/articles/modifier",modifyArticle)
-// router.delete("/articles/:id",deleteArticle)
 // router.get("*",notFound)
 
 export default router;

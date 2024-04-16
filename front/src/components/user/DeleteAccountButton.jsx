@@ -33,7 +33,7 @@ const DeleteAccountButton = ({ userId }) => {
 
     return (
         <div>
-            {message && <p>{message}</p>} {/* Afficher le message s'il est défini */}
+            {message && <p>{message}</p>} 
             <button onClick={handleDeleteAccount} className="delete-btn">
                 Supprimer mon compte
             </button>

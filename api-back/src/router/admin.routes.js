@@ -14,14 +14,14 @@ router.get("/stats",getStats)
 // catégories //
 router.get('/categories/:id', getCategoryById);
 router.post('/categories', createCategory);
-router.put('/categories/:id', updateCategory);
+router.patch('/categories/:id', updateCategory);
 router.delete('/categories/:id', deleteCategory);
 
 
 //articles//
 router.get("/articles/:id",getArticleById)
-router.post("/articles",addArticle)
-router.put("/articles/:id",modifyArticle)
+router.post("/articles",addArticle )
+router.patch("/articles/:id",modifyArticle)
 router.delete("/articles/:id",deleteArticle)
 
 export default router;

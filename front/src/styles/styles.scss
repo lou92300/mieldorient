@@ -1,19 +1,39 @@
+@import "variable";
+
+
 @import url("../views/admin/style/admin.scss");
+@import url("../components/styles/cartbutton.scss");
 @import url("../views/user/style/user.scss");
+@import url("./tabletteStyles.scss");
+@import url("./desktopStyles.scss");
+
+
+
+@font-face {
+  font-family: 'dubai'; 
+  src: url('../assets/fonts/Dubai\ Dubstep.ttf') format('truetype'); 
+}
+
+
 
 body {
   margin: 0;
+  h1, h2{
+    font-family: "dubai" ,sans-serif;
+  }
 }
 header,
 footer {
   background: rgb(255 193 7 / 55%);
-  padding: 3em;
+  padding: 2em;
   box-shadow:  2Px 0Px 9Px -2Px;
 }
+
+//************************ HEADER *************************/
+.header-logo {
+  width: 100%;
+}
 header {
-  .header-logo {
-    width: 100%;
-  }
   .menu-container {
     display: flex;
     justify-content: center;
@@ -29,7 +49,7 @@ header {
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: rgb(253, 161, 0);
+      background: $background-color;
       border-radius: 0px 0px 5px 5px;
       margin-top: -3px;
       a {
@@ -40,7 +60,7 @@ header {
     }
   }
 }
-
+//************************ FOOTER *************************/
 footer {
   text-align: center;
   .footer-logo {
@@ -48,9 +68,32 @@ footer {
   }
   .social-media-links {
     display: flex;
+    margin: 2em;
     justify-content: space-evenly;
+    a{
+      text-decoration: none;
+      color:orange;
+    }
+    // facebook RGB : (23, 169, 253)
+    // twitter #1DA1F2
+    // instagram #C32AA3
+  }
+  .terms-privacy{
+    a {
+     
+      margin: 1em;
+      text-decoration: none;
+      color: black;
+    }
   }
 }
+//************************ HOME *************************/
+.Home-container{
+  img{
+    max-width: 100%;
+  }
+}
+
 //************************ ARTICLES *************************/
 .articles {
   h1 {
@@ -71,6 +114,7 @@ footer {
       background: rgb(255 193 7 / 32%);
       img {
         width: 90%;
+        height: 454.72px;
         margin: 4%;
         border-radius: 5px 5px 5px 5px;
       }
@@ -80,6 +124,7 @@ footer {
         }
         .product-description{
           margin: 1em;
+          max-height: 50px;
         }
         .price {
           padding: 1em;
@@ -90,7 +135,7 @@ footer {
       padding: 1em;
       border: none;
       border-radius: 6px;
-      background: rgb(253, 161, 0);
+      background: $background-color;
       box-shadow: 1px 1px 7Px 1Px;
     }
   }
@@ -125,7 +170,7 @@ footer {
       border: none;
       padding: 1em;
       border-radius: 7px;
-      background: rgb(253, 161, 0);
+      background: $background-color;
       box-shadow: 0Px 1Px 3Px 0Px;
     }
   }
@@ -144,7 +189,7 @@ footer {
       div {
         .delete-btn {
           padding: 1em;
-          background: rgb(237, 18, 18);
+          background: $red-btn-color;
           border: none;
           border-radius: 7px;
           box-shadow: 0Px 1Px 3Px 0Px;
@@ -157,13 +202,13 @@ footer {
       border: none;
       padding: 1em;
       border-radius: 7px;
-      background: lightgreen;
+      background: $green-btn-color;
       box-shadow: 0Px 1Px 3Px 0Px;
     }
   }
 }
 
-/****************** inscription ************/
+/****************** Register ************/
 /*******************************************/
 
 .confirmation-slide {
@@ -188,12 +233,12 @@ footer {
   }
 }
 
-/****************** connexion *************/
+/****************** Login *************/
 /******************************************/
 
 .container-connexion {
   padding: 2em;
-  background: rgb(253, 161, 0);
+  background: $background-color;
   border-radius: 1em;
   display: flex;
   flex-direction: column;
@@ -245,4 +290,19 @@ footer {
       transform: translateX(0);
     }
   }
+}
+/****************** Terms/Privacy *************/
+/******************************************/
+.terms-container{
+
+    width: 75%;
+    margin: 3em auto;
+    background: $background-color;
+    padding: 1em;
+    border-radius: 7px;
+    box-shadow: 1px 1px 8Px 1Px;
+  h2{
+    text-align: center;
+  }
+
 }

@@ -1,0 +1,89 @@
+/**************** header ********************/
+
+@media screen and (min-width: 780px) {
+  header {
+    display: flex;
+    justify-content: space-around;
+    .header-logo {
+      width: 30%;
+    }
+  }
+  footer{
+    .footer-logo{
+      width: 15% !important;
+    }
+  }
+}
+/************** Home *******************/
+
+@media screen and (min-width: 780px) {
+  .Home-container {
+    max-width: 95%;
+    margin: auto;
+
+    h2 {
+      text-align: center;
+    }
+    .containers {
+      overflow: hidden;
+      h3 {
+        text-align: center;
+      }
+      img {
+        margin: 1em;
+        max-width: 50%;
+      }
+      .right {
+        float: right;
+      }
+      .left {
+        float: left;
+      }
+    }
+  }
+}
+
+/************** articles *******************/
+
+@media screen and (min-width: 780px) {
+  .articles {
+    display: flex;
+    flex-wrap: wrap;
+    h1 {
+      flex: 1 0 100%;
+    }
+    ul {
+      display: contents;
+      li {
+        width: 47%;
+        margin: 10px;
+      }
+    }
+  }
+  .articles-list-container {
+    .articles-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  
+}
+
+/*********** dasboard *********************/
+
+@media screen and (min-width: 780px) {
+  .dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    h1 {
+      flex: 1 0 100%;
+    }
+    .container {
+      width: 36%;
+    }
+  }
+  .NewArticle-container {
+    width: 35%;
+}
+}

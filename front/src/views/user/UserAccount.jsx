@@ -32,22 +32,22 @@ const UserAccount = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(userData),
-        credentials: 'include' // Ajout de l'option pour inclure les cookies dans la demande
+        credentials: 'include' 
       });
       const data = await response.json();
       console.log(data)
       if (response.ok) {
         setSuccessMessage('Modifications enregistrées avec succès.');
       } else {
-        setErrorMessage(data.message); // Assuming server returns an error message
+        setErrorMessage('Une erreur est survenue lors de la sauvegarde des modifications.');
       }
       setIsLoading(false);
-      setShowConfirmation(false); // Réinitialiser le statut de la confirmation
+      setShowConfirmation(false); 
     } catch (error) {
       console.error('erreur lors du téléchargement des données', error);
       setErrorMessage('Impossible de sauvegarder les changements');
       setIsLoading(false);
-      setShowConfirmation(false); // Réinitialiser le statut de la confirmation
+      setShowConfirmation(false); 
     }
   };
 

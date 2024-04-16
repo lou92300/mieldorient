@@ -1,0 +1,49 @@
+@media screen and (min-width: 1024px) {
+    header {
+        .header-logo{
+            width: 20%;
+        }
+        
+        .menu-container nav{
+            
+            padding: 1em;
+            display: block !important;
+            border-radius: 5px;
+            box-shadow: 0px 2Px 6Px 0Px;
+            a{
+                
+                background-color: rgb(253, 161, 0);
+                margin: 2em;
+            }
+        }
+    }
+
+    footer{
+        .footer-logo{
+            width: 10% !important;
+
+        }
+    }
+    
+  }
+  /******************** articles *************************/
+
+
+  @media screen and (min-width: 1024px){
+      
+      .articles ul li {
+          width: 30%;
+          margin: auto;
+      }
+  }
+
+
+
+/********************* dashboard **************************/
+
+@media screen and (min-width : 1024px) {
+    .NewArticle-container {
+        width: 35%;
+    }
+    
+}

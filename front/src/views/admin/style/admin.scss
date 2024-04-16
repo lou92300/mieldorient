@@ -1,4 +1,133 @@
-.dashboard-container{
-    text-align: center;
+.dashboard-container {
+  text-align: center;
+  .container {
+    padding: 4em;
+    background: burlywood;
+    width: 50%;
+    margin: auto;
+    border-radius: 8px;
+    margin-bottom: 1em;
+    transition: box-shadow 0.3s ease;
+     
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+  .container:hover{
+    box-shadow: 1px 1px 14px 1px rgba(0, 0, 0, 0.3); 
+  }
+}
+.add-category{
+      /* text-align: center; */
+      padding: 4em;
+      background: orange;
+      /* display: flex; */
+      width: 30%;
+      margin: 2em auto;
+      border-radius: 1em;
+      legend{
+        text-align: center;
+        font-size: larger;
+      }
+      div{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+      button{
+        padding: 7px;
+        border-radius: 6px;
+        border: none;
+        margin: 1em;
+        width: 50%;
+        margin: 1em auto;
+        background: lightgreen;
+      }
+}
+.articles-list-container, .category-list-container {
+  text-align: center;
+// *********************** MODIFY CATEGORIES AND ARTICLES *******************/
+  .articles-list,.category-list {
+    list-style: none;
+    padding: 0;
     
+    li {
+      margin: 10px;
+      
+      button{
+        border: none;
+        padding: 1em;
+        border-radius: 5px;
+        background-color: orange;
+      }
+    }
+    .list{
+      border: none;
+      padding: 1em;
+      border-radius: 5px;
+      background-color: orange;
+      margin: 1em auto;
+      width: 30%;
+    }
+  }
+  div {
+    select{
+      border: solid 1Px orange;
+    padding: 1em;
+    border-radius: 6px;
+    }
+    .description {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      textarea {
+        width: 80%;
+        margin: auto;
+        height: 100px;
+        border-radius: 5px;
+        border: solid 1px orange;
+      }
+    }
+    button {
+      padding: 1em;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      background: palegreen;
+    }
+    .delete-btn {
+      background-color: red;
+    }
+  }
+  input{
+    padding: 7px;
+    border-radius: 6px;
+    border: solid 1px orange;
+  }
+}
+.NewArticle-container {
+  background: orange;
+  width: 80%;
+  margin: 3em auto;
+  padding: 1em;
+  border-radius: 7px;
+  box-shadow: 1px 1Px 6Px 1Px;
+  text-align: center;
+  form {
+    flex-direction: column;
+    display: inline-flex;
+    button{
+      padding: 1em;
+      margin: 1em;
+      border: none;
+      background: lightgreen;
+      border-radius: 7px;
+    }
+  }
+}
+.stats-container{
+  h1{
+    text-align: center;
+  }
 }
