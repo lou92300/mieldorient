@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { updateStatus } from '../store/slice/userSlice';
+import { updateStatus } from '../../store/slice/userSlice';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,9 +30,9 @@ const Login = () => {
         body: JSON.stringify(data)
       });
      
-      if (response.ok) {
+      if (response) {
         const resJson = await response.json();
-        // console.log(resJson);
+     
         dispatch(updateStatus({ 
           ...resJson ,
           // username : resJson.username,
@@ -41,6 +41,7 @@ const Login = () => {
           // firstname: resJson.firstname,
           // email : resJson.email
         }));
+        console.log(resJson)
 
         setShowConfirmation(true);
     

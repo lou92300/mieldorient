@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { articleFetch } from "./productSlice";
 
-// Action asynchrone pour ajouter un article au panier
+
 export const addOneToCart = createAsyncThunk(
   "cart/addOneToCart",
   async (action, thunkAPI) => {
-    await thunkAPI.dispatch(articleFetch()); // Appeler articleFetch pour obtenir les articles
+    await thunkAPI.dispatch(articleFetch()); 
     const storeState = thunkAPI.getState();
-    const { items } = storeState.products; // Accéder aux articles
+    const { items } = storeState.products; 
     const isAlreadyPresent = storeState.cart.cartItems.find(el => el.id === action);
     
     if (!isAlreadyPresent) {
@@ -18,18 +18,18 @@ export const addOneToCart = createAsyncThunk(
         quantity: 1
       };
     
-      return newCartItem; // Retourner l'article à ajouter au panier
+      return newCartItem; 
     }
   }
 );
 
-// Action pour supprimer un article du panier
+
 export const removeFromCart = createAsyncThunk(
   "cart/removeFromCart",
   (itemId, thunkAPI) => {
     const state = thunkAPI.getState();
     const updatedCartItems = state.cart.cartItems.filter(item => item.ID !== itemId);
-    return updatedCartItems; // Retourner les articles mis à jour après suppression
+    return updatedCartItems; 
   }
 );
 

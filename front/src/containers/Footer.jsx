@@ -9,13 +9,13 @@ function Footer() {
       <img className='footer-logo' src={logo} alt="logo miel d'orient" />
       <div className="social-media-links">
         <a href="https://facebook.com">
-          <FontAwesomeIcon icon={faFacebookF} size="2x" className='facebook-icon'/> {/* Ajustez la taille ici, par exemple "2x" */}
+          <FontAwesomeIcon icon={faFacebookF} size="2x" className='facebook-icon'/> 
         </a>
         <a href="https://twitter.com">
-          <FontAwesomeIcon icon={faTwitter} size="2x" className='twitter-icon'/> {/* Ajustez la taille ici, par exemple "2x" */}
+          <FontAwesomeIcon icon={faTwitter} size="2x" className='twitter-icon'/> 
         </a>
         <a href="https://instagram.com">
-          <FontAwesomeIcon icon={faInstagram} size="2x" className='instagram-icon' /> {/* Ajustez la taille ici, par exemple "2x" */}
+          <FontAwesomeIcon icon={faInstagram} size="2x" className='instagram-icon' /> 
         </a>
       </div>
       <div className="terms-privacy">

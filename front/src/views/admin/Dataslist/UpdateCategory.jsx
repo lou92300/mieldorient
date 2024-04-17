@@ -57,7 +57,7 @@ function UpdateCategory() {
                     <li className='list' key={category.ID} onClick={() => handleSelectCategory(category.ID)}>{category.name}</li>
                 ))}
             </ul>
-            {/* Formulaire de mise à jour de la catégorie */}
+            
             {selectedCategory && (
                 <div>
                     <input type="text" value={updatedName} onChange={(e) => setUpdatedName(e.target.value)} />

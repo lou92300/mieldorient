@@ -1,5 +1,7 @@
+@import "../../../styles/variable.scss";
+
 .dashboard-container {
-  text-align: center;
+ @include text-center;
   .container {
     padding: 4em;
     background: burlywood;
@@ -19,21 +21,19 @@
   }
 }
 .add-category{
-      /* text-align: center; */
       padding: 4em;
-      background: orange;
-      /* display: flex; */
+      background: $background-color;
       width: 30%;
       margin: 2em auto;
       border-radius: 1em;
       legend{
-        text-align: center;
+       @include text-center;
         font-size: larger;
       }
       div{
         display: flex;
         flex-direction: column;
-        text-align: center;
+       @include text-center;
       }
       button{
         padding: 7px;
@@ -42,11 +42,12 @@
         margin: 1em;
         width: 50%;
         margin: 1em auto;
-        background: lightgreen;
+        background: $green-btn-color;
       }
 }
 .articles-list-container, .category-list-container {
-  text-align: center;
+ @include text-center;
+ 
 // *********************** MODIFY CATEGORIES AND ARTICLES *******************/
   .articles-list,.category-list {
     list-style: none;
@@ -59,34 +60,34 @@
         border: none;
         padding: 1em;
         border-radius: 5px;
-        background-color: orange;
+        background-color: $background-color;
       }
     }
     .list{
       border: none;
       padding: 1em;
       border-radius: 5px;
-      background-color: orange;
+      background-color: $background-color;
       margin: 1em auto;
       width: 30%;
     }
   }
   div {
     select{
-      border: solid 1Px orange;
+      border: solid 1Px $background-color;
     padding: 1em;
     border-radius: 6px;
     }
     .description {
       display: flex;
       flex-direction: column;
-      text-align: center;
+     @include text-center;
       textarea {
         width: 80%;
         margin: auto;
         height: 100px;
         border-radius: 5px;
-        border: solid 1px orange;
+        border: solid 1px $background-color;
       }
     }
     button {
@@ -94,26 +95,26 @@
       margin: 10px;
       border: none;
       border-radius: 5px;
-      background: palegreen;
+      background: $green-btn-color;
     }
     .delete-btn {
-      background-color: red;
+      background-color: $red-btn-color;
     }
   }
   input{
     padding: 7px;
     border-radius: 6px;
-    border: solid 1px orange;
+    border: solid 1px $background-color;
   }
 }
 .NewArticle-container {
-  background: orange;
+  background: $background-color;
   width: 80%;
   margin: 3em auto;
   padding: 1em;
   border-radius: 7px;
   box-shadow: 1px 1Px 6Px 1Px;
-  text-align: center;
+ @include text-center;
   form {
     flex-direction: column;
     display: inline-flex;
@@ -121,13 +122,13 @@
       padding: 1em;
       margin: 1em;
       border: none;
-      background: lightgreen;
+      background: $green-btn-color;
       border-radius: 7px;
     }
   }
 }
 .stats-container{
   h1{
-    text-align: center;
+   @include text-center;
   }
 }

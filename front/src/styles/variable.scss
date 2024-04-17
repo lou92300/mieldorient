@@ -5,3 +5,24 @@ $red-btn-color : rgb(237, 18, 18);
 $green-btn-color: lightgreen;
 
 /************** MIXINS *****************/
+
+@mixin button-styles {
+    padding: 1em;
+    border: none;
+    border-radius: 7px;
+    box-shadow: 1px 1px 7px 1px;
+  }
+
+  @mixin link-styles {
+    text-decoration: none;
+    color: black;
+  }
+
+  @mixin text-center {
+    text-align: center;
+  }
+
+  @mixin flex-container-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }

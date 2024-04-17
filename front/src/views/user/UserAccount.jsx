@@ -1,8 +1,8 @@
 
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import AddAddressForm from '../../components/user/Address';
-import DeleteAccountButton from '../../components/user/DeleteAccountButton';
+import AddAddressForm from './Address';
+import DeleteAccountButton from './DeleteAccountButton';
 
 const UserAccount = () => {
   const userInfo = useSelector((state) => state.user.userInfo);

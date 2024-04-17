@@ -11,6 +11,6 @@ router.post("/login",login)
 
 
 router.get("/logout",logout)
-router.get("/check-token", auth, checkToken)
+router.get("/check-token",checkToken)
 
 export default router;

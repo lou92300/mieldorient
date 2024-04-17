@@ -1,4 +1,7 @@
+@import "variable";
+
 @media screen and (min-width: 1024px) {
+
     header {
         .header-logo{
             width: 20%;
@@ -12,7 +15,7 @@
             box-shadow: 0px 2Px 6Px 0Px;
             a{
                 
-                background-color: rgb(253, 161, 0);
+                background-color: $background-color;
                 margin: 2em;
             }
         }

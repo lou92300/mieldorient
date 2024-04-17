@@ -1,7 +1,8 @@
+
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { articleFetch } from "../store/slice/productSlice";
-import { addOneToCart, removeFromCart } from "../store/slice/cart";
+import { articleFetch } from "../../store/slice/productSlice";
+import { addOneToCart, removeFromCart } from "../../store/slice/cart";
 
 function Article() {
   const { items } = useSelector((state) => state.products);
@@ -12,7 +13,7 @@ function Article() {
 
   useEffect(() => {
     dispatch(articleFetch());
-  }, []);
+  }, [dispatch]);
 
   const isAddedToCart = (ID) => {
     return cartItems.some(item => item.ID === ID);
@@ -47,7 +48,7 @@ function Article() {
       <ul>
         {items             
           .filter((article) =>
-            article.name.toLowerCase().includes(searchTerm.toLowerCase())
+            article.name && article.name.toLowerCase().includes(searchTerm.toLowerCase())
           )
           .map((el) => (
             <li key={el.ID}>
@@ -77,4 +78,3 @@ function Article() {
 }
 
 export default Article;
-

@@ -5,17 +5,19 @@ import { categoryFetch } from "../../../store/slice/categorySlice";
 
 function UpdateArticles() {
   const { items } = useSelector((state) => state.products);
+  console.log(items)
   const { categories } = useSelector((state) => state.categories);
   const dispatch = useDispatch();
   // const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedArticle, setSelectedArticle] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedArticle, setSelectedArticle] = useState("");
   const [updatedDescription, setUpdatedDescription] = useState("");
   const [updatedPrice, setUpdatedPrice] = useState("");
 
   useEffect(() => {
     dispatch(articleFetch());
     dispatch(categoryFetch());
+    
 }, []); 
 
   const handleSelectArticle = (articleId) => {
@@ -42,7 +44,7 @@ function UpdateArticles() {
         })
       )
       .then(() => {
-        setSelectedArticle(null);
+        setSelectedArticle("");
         setUpdatedDescription("");
         setUpdatedPrice("");
         setSelectedCategory("");
@@ -58,7 +60,7 @@ function UpdateArticles() {
     if (window.confirm("Êtes-vous sûr de vouloir supprimer cet article ?")) {
       dispatch(deleteArticle(selectedArticle))
         .then(() => {
-          setSelectedArticle(null);
+          setSelectedArticle("");
           dispatch(articleFetch());
         })
         .catch((error) => {

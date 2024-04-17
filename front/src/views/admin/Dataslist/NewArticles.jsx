@@ -18,6 +18,7 @@ function NewArticles() {
 
   useEffect(() => {
     dispatch(categoryFetch());
+   
   }, [dispatch]);
 
   const handleAddArticle = async (e) => {
@@ -36,10 +37,10 @@ function NewArticles() {
 
     dispatch(createArticle(newArticleData));
 
-    // Afficher le message de confirmation
+    
     setShowConfirmation(true);
 
-    // Réinitialiser les champs
+    
     setNewArticleName('');
     setNewArticleDescription('');
     setNewArticlePrice('');

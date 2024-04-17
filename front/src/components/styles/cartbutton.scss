@@ -1,11 +1,11 @@
-
+@import "../../styles/variable.scss";
 
 .floating-cart-button {
     position: fixed;
     bottom: 20px;
     right: 20px;
     z-index: 998;
-    background-color: #fda100;
+    background-color: $background-color;
     border: none;
     cursor: pointer;
     border-radius: 20px;

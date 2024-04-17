@@ -1,165 +1,183 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Action asynchrone pour récupérer tous les articles
 export const articleFetch = createAsyncThunk(
-  "products/articleFetch", // Nom de l'action
-  async () => { // Fonction asynchrone pour effectuer la requête
+  "products/articleFetch",
+  async () => {
     try {
-      const res = await fetch("http://localhost:9005/api/v1/articles", { // Requête GET vers l'API
+      const res = await fetch("http://localhost:9005/api/v1/articles", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       });
-      const data = await res.json(); // Récupération des données JSON de la réponse
-      return data; // Retourne les données pour les reducers
+      const data = await res.json();
+      return data;
     } catch (error) {
-      throw new Error("Erreur lors de la récupération des articles: " + error.message); // Lance une erreur en cas d'échec
+      throw "Erreur lors de la récupération des articles: " + error;
     }
   }
 );
 
-// Action asynchrone pour mettre à jour un article
 export const updateArticle = createAsyncThunk(
-  "products/updateArticle", // Nom de l'action
-  async ({ id, updatedData }) => { // Fonction asynchrone pour effectuer la requête avec l'ID de l'article et les données mises à jour
+  "products/updateArticle",
+  async ({ id, updatedData }) => {
     try {
-      const res = await fetch(`http://localhost:9005/api/v1/admin/articles/${id}`, { // Requête PATCH vers l'API
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData), // Corps de la requête contenant les données mises à jour
-        credentials: 'include', // Inclusion des informations d'identification
-      });
-      const data = await res.json(); // Récupération des données JSON de la réponse
-      return data; // Retourne les données pour les reducers
+      const res = await fetch(
+        `http://localhost:9005/api/v1/admin/articles/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedData),
+          credentials: "include",
+        }
+      );
+      const data = await res.json();
+      return data;
     } catch (error) {
-      throw new Error("Erreur lors de la mise à jour de l'article: " + error.message); // Lance une erreur en cas d'échec
+      throw "Erreur lors de la mise à jour de l'article: " + error;
     }
   }
 );
 
-// Action asynchrone pour supprimer un article
 export const deleteArticle = createAsyncThunk(
-  "products/deleteArticle", // Nom de l'action
-  async (id) => { // Fonction asynchrone pour effectuer la requête avec l'ID de l'article
+  "products/deleteArticle",
+  async (id) => {
     try {
-      const res = await fetch(`http://localhost:9005/api/v1/admin/articles/${id}`, { // Requête DELETE vers l'API
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: 'include', // Inclusion des informations d'identification
-      });
-      const data = await res.json(); // Récupération des données JSON de la réponse
-      return data; // Retourne les données pour les reducers
+      const res = await fetch(
+        `http://localhost:9005/api/v1/admin/articles/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      const data = await res.json();
+      return data;
     } catch (error) {
-      throw new Error("Erreur lors de la suppression de l'article: " + error.message); // Lance une erreur en cas d'échec
+      throw "Erreur lors de la suppression de l'article: " + error;
     }
   }
 );
-
-
 
 export const createArticle = createAsyncThunk(
-  "products/createArticle", 
-  async (articleData) => { // Fonction asynchrone pour effectuer la requête avec les données de l'article
+  "products/createArticle",
+  async (articleData) => {
     try {
       const formData = new FormData();
       for (const key in articleData) {
         formData.append(key, articleData[key]);
       }
 
-      const res = await fetch("http://localhost:9005/api/v1/admin/articles", { // Requête POST vers l'API
+      const res = await fetch("http://localhost:9005/api/v1/admin/articles", {
         method: "POST",
-        body: formData, // Utilisation de FormData pour envoyer les données
-        credentials: 'include', // Inclusion des informations d'identification
+        body: formData,
+        credentials: "include",
       });
-      const data = await res.json(); // Récupération des données JSON de la réponse
-      return data; // Retourne les données pour les reducers
+      const data = await res.json();
+      return data;
     } catch (error) {
       console.error("Erreur lors de l'ajout de l'article:", error);
-      throw new Error("Erreur lors de l'ajout de l'article: " + error.message); // Lance une erreur en cas d'échec
+      throw "Erreur lors de l'ajout de l'article: " + error;
     }
   }
 );
 
-// Définition de l'état initial de la slice
+
 const initialState = {
-  items: [], // Tableau des articles
-  isLoading: false, // Indicateur de chargement
-  error: null, // Gestion des erreurs
+  items: [], 
+  isLoading: false, 
+  error: null, 
 };
 
-// Définition de la slice
+
 const productsSlice = createSlice({
-  name: "products", // Nom de la slice
-  initialState, // État initial
-  reducers: { // Reducers synchrones
-    createCartItem: (state, action) => { // Créer un élément du panier
+  name: "products",
+  initialState,
+  reducers: {
+    createCartItem: (state, action) => {
       const { id } = action.payload;
-      const itemToUpdate = state.items.find(item => item.id === id);
+      const itemToUpdate = state.items.find((item) => item.id === id);
       if (itemToUpdate) {
-        itemToUpdate.picked = true;
+        itemToUpdate = true;
       }
     },
   },
-  extraReducers: (builder) => { // Reducers pour les actions asynchrones
+  extraReducers: (builder) => {
     builder
-      .addCase(articleFetch.pending, (state, action) => { // En attente de la récupération des articles
+      .addCase(articleFetch.pending, (state, action) => {
+        state.isLoading = true;
+        console.log(state.isLoading)
+      })
+      .addCase(articleFetch.fulfilled, (state, action) => {
+        
+        state.isLoading = false;
+        state.items = action.payload; 
+        console.log(state.items)
+      })
+      .addCase(articleFetch.rejected, (state, action) => {
+        
+        state.error = action.error.message; 
+        state.isLoading = false;
+      })
+      .addCase(updateArticle.pending, (state) => {
+        
         state.isLoading = true;
       })
-      .addCase(articleFetch.fulfilled, (state, action) => { // Succès de la récupération des articles
+      .addCase(updateArticle.fulfilled, (state, action) => {
+        
         state.isLoading = false;
-        state.items = action.payload; // Met à jour les articles dans l'état
-      })
-      .addCase(articleFetch.rejected, (state, action) => { // Échec de la récupération des articles
-        state.error = action.error.message; // Gère l'erreur
-        state.isLoading = false;
-      })
-      .addCase(updateArticle.pending, (state) => { // En attente de la mise à jour de l'article
-        state.isLoading = true;
-      })
-      .addCase(updateArticle.fulfilled, (state, action) => { // Succès de la mise à jour de l'article
-        state.isLoading = false;
-        const updatedArticle = action.payload; // Article mis à jour
-        const existingArticleIndex = state.items.findIndex(article => article.ID === updatedArticle.ID);
+        const updatedArticle = action.payload;
+        console.log(updatedArticle) 
+        const existingArticleIndex = state.items.findIndex(
+          (article) => article.ID === updatedArticle.ID
+        );
         if (existingArticleIndex !== -1) {
-          state.items[existingArticleIndex] = updatedArticle; // Met à jour l'article dans l'état
+          state.items[existingArticleIndex] = updatedArticle; 
         }
       })
-      .addCase(updateArticle.rejected, (state, action) => { // Échec de la mise à jour de l'article
-        state.error = action.error.message; // Gère l'erreur
+      .addCase(updateArticle.rejected, (state, action) => {
+        
+        state.error = action.error.message; 
         state.isLoading = false;
       })
-      .addCase(deleteArticle.pending, (state) => { // En attente de la suppression de l'article
+      .addCase(deleteArticle.pending, (state) => {
+        
         state.isLoading = true;
       })
-      .addCase(deleteArticle.fulfilled, (state, action) => { // Succès de la suppression de l'article
+      .addCase(deleteArticle.fulfilled, (state, action) => {
+       
         state.isLoading = false;
-        const deletedArticleId = action.payload.id; // ID de l'article supprimé
-        state.items = state.items.filter(article => article.id !== deletedArticleId); // Supprime l'article de l'état
+        const deletedArticleId = action.payload.id; 
+        state.items = state.items.filter(
+          (article) => article.id !== deletedArticleId
+        ); 
       })
-      .addCase(deleteArticle.rejected, (state, action) => { // Échec de la suppression de l'article
-        state.error = action.error.message; // Gère l'erreur
+      .addCase(deleteArticle.rejected, (state, action) => {
+       
+        state.error = action.error.message; 
         state.isLoading = false;
       })
-      .addCase(createArticle.pending, (state) => { // En attente de l'ajout de l'article
+      .addCase(createArticle.pending, (state) => {
+       
         state.isLoading = true;
       })
-      .addCase(createArticle.fulfilled, (state, action) => { // Succès de l'ajout de l'article
+      .addCase(createArticle.fulfilled, (state, action) => {
+      
         state.isLoading = false;
-        const newArticle = action.payload; // Nouvel article ajouté
-        state.items.push(newArticle); // Ajoute le nouvel article à la liste des articles dans l'état
+        const newArticle = action.payload; 
+        state.items.push(newArticle); 
       })
-      .addCase(createArticle.rejected, (state, action) => { // Échec de l'ajout de l'article
-        state.error = action.error.message; // Gère l'erreur
+      .addCase(createArticle.rejected, (state, action) => {
+        
+        state.error = action.error.message; 
         state.isLoading = false;
       });
   },
 });
 
-// Exportation des actions et du reducer
 export const { createCartItem } = productsSlice.actions;
 export default productsSlice.reducer;

@@ -53,8 +53,7 @@ header {
       border-radius: 0px 0px 5px 5px;
       margin-top: -3px;
       a {
-        text-decoration: none;
-        color: black;
+        @include link-styles;
         padding: 0.5em;
       }
     }
@@ -62,7 +61,7 @@ header {
 }
 //************************ FOOTER *************************/
 footer {
-  text-align: center;
+  @include text-center;
   .footer-logo {
     width: 30%;
   }
@@ -82,8 +81,7 @@ footer {
     a {
      
       margin: 1em;
-      text-decoration: none;
-      color: black;
+      @include link-styles;
     }
   }
 }
@@ -97,7 +95,7 @@ footer {
 //************************ ARTICLES *************************/
 .articles {
   h1 {
-    text-align: center;
+    @include text-center;
   }
   input {
     margin: auto;
@@ -108,7 +106,7 @@ footer {
   }
   ul {
     list-style: none;
-    text-align: center;
+    @include text-center;
     padding: 0px;
     li {
       background: rgb(255 193 7 / 32%);
@@ -132,11 +130,9 @@ footer {
       }
     }
     button {
-      padding: 1em;
-      border: none;
-      border-radius: 6px;
+      @include button-styles;
       background: $background-color;
-      box-shadow: 1px 1px 7Px 1Px;
+     
     }
   }
 }
@@ -167,11 +163,9 @@ footer {
     align-items: center;
     margin-bottom: 20px;
     button {
-      border: none;
-      padding: 1em;
-      border-radius: 7px;
+      @include button-styles;
       background: $background-color;
-      box-shadow: 0Px 1Px 3Px 0Px;
+      
     }
   }
   .cart-items {
@@ -188,22 +182,19 @@ footer {
       }
       div {
         .delete-btn {
-          padding: 1em;
+          @include button-styles;
           background: $red-btn-color;
-          border: none;
-          border-radius: 7px;
-          box-shadow: 0Px 1Px 3Px 0Px;
+         
         }
       }
     }
   }
   .cart-total {
     .payment-btn {
-      border: none;
-      padding: 1em;
-      border-radius: 7px;
+      @include button-styles;
+     
       background: $green-btn-color;
-      box-shadow: 0Px 1Px 3Px 0Px;
+      
     }
   }
 }
@@ -251,7 +242,7 @@ footer {
     label {
       display: flex;
       flex-direction: column;
-      text-align: center;
+      @include text-center;
     }
     div {
       display: flex;
@@ -259,15 +250,12 @@ footer {
       label {
         display: flex;
         flex-direction: column;
-        text-align: center;
+        @include text-center;
       }
     }
     button {
       margin: 1em;
-      border: none;
-      padding: 1em;
-      border-radius: 7px;
-      box-shadow: 1px 1px 7Px 1Px;
+      @include button-styles;
     }
   }
   .confirmation-slide {
@@ -302,7 +290,14 @@ footer {
     border-radius: 7px;
     box-shadow: 1px 1px 8Px 1Px;
   h2{
-    text-align: center;
+    @include text-center;
   }
 
+}
+
+/****************** Not Found ****************
+***********************************************/
+.notfound{
+  @include text-center;
+  margin: 6em;
 }

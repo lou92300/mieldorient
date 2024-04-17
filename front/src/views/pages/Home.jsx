@@ -1,8 +1,8 @@
 import React from "react";
-import miel from "../assets/img/presentation-1.jpg";
-import saveur from "../assets/img/saveur.jpg"
-import bio from "../assets/img/bio.jpg"
-import artisanal from "../assets/img/artisanal.png"
+import miel from "../../assets/img/presentation-1.jpg";
+import saveur from "../../assets/img/saveur.jpg"
+import bio from "../../assets/img/bio.jpg"
+import artisanal from "../../assets/img/artisanal.png"
 
 function Home() {
   return (

@@ -1,11 +1,12 @@
 import logo from "../assets/img/logo.png";
-import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect} from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector} from "react-redux";
 import { handleLogout } from "../store/slice/userSlice";
 import FloatingCartButton from "../components/FloatingCartButton";
 
 function Header() {
+  const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1024); 
 
@@ -15,27 +16,27 @@ function Header() {
 
   const dispatch = useDispatch();
   
-  // Accédez à l'état de connexion depuis le store Redux
+ 
   const isLoggedIn = useSelector((state) => state.user.userInfo?.isLogged);
   // const username = useSelector((state)=>state.user.userInfo?.username)
   const role = useSelector((state)=> state.user.userInfo?.role)
 
-  // Fonction pour gérer la déconnexion
+
   const handleLogoutClick = () => {
-    dispatch(handleLogout()); // Dispatch de l'action de déconnexion
-    //mettre redirection
+    dispatch(handleLogout());
+    navigate("/connexion")  
   };
 
   useEffect(() => {
-    // Fonction de rappel pour mettre à jour l'état isDesktop lors du redimensionnement de la fenêtre
+   
     const updateMedia = () => {
       setIsDesktop(window.innerWidth > 1024);
     };
 
-    // Ajoutez un écouteur d'événements pour suivre les redimensionnements de la fenêtre
+    
     window.addEventListener("resize", updateMedia);
 
-    // Supprimez l'écouteur d'événements lors du démontage du composant
+    
     return () => window.removeEventListener("resize", updateMedia);
   }, []); 
 
@@ -102,3 +103,4 @@ function Header() {
 }
 
 export default Header;
+

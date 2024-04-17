@@ -1,3 +1,4 @@
+@import "variable";
 /**************** header ********************/
 
 @media screen and (min-width: 780px) {
@@ -22,12 +23,12 @@
     margin: auto;
 
     h2 {
-      text-align: center;
+      @include text-center
     }
     .containers {
       overflow: hidden;
       h3 {
-        text-align: center;
+        @include text-center
       }
       img {
         margin: 1em;
@@ -47,8 +48,7 @@
 
 @media screen and (min-width: 780px) {
   .articles {
-    display: flex;
-    flex-wrap: wrap;
+    @include flex-container-wrap;
     h1 {
       flex: 1 0 100%;
     }
@@ -62,8 +62,7 @@
   }
   .articles-list-container {
     .articles-list {
-      display: flex;
-      flex-wrap: wrap;
+     @include flex-container-wrap
     }
   }
 
@@ -74,8 +73,7 @@
 
 @media screen and (min-width: 780px) {
   .dashboard-container {
-    display: flex;
-    flex-wrap: wrap;
+    @include flex-container-wrap;
     h1 {
       flex: 1 0 100%;
     }

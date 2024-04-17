@@ -15,7 +15,7 @@ function Statistiques() {
         });
         console.log(response)
 
-        if (!response.ok) {
+        if (!response) {
           throw new Error('Erreur lors de la récupération des données');
         }
 

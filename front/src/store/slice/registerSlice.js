@@ -13,20 +13,18 @@ export const registerUser = createAsyncThunk(
         body: JSON.stringify(userData),
       });
 
-      if (!response.ok) {
+      if (!response) {
         const errorData = await response.json();
-        throw new Error(errorData.message);
+        throw (errorData);
       }
 
-      const data = await response.json();
-      return data;
+      return response.json();
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
-// Création de la slice Redux pour gérer l'inscription
 const registerSlice = createSlice({
   name: 'register',
   initialState: {
@@ -35,7 +33,7 @@ const registerSlice = createSlice({
     error: null,
   },
   reducers: {},
-  extraReducers: (builder) => { // Utilisation de la fonction de rappel builder
+  extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
@@ -52,5 +50,4 @@ const registerSlice = createSlice({
   },
 });
 
-export const { addUsers } = registerSlice.actions;
 export default registerSlice.reducer;

@@ -21,7 +21,7 @@ function AddCategory() {
                 credentials: 'include'
             });
     
-            if (response.ok) {
+            if (response) {
                 const responseData = await response.json(); 
 
                 alert("Catégorie créée avec succès. Nom de la nouvelle catégorie : " + responseData.name);
