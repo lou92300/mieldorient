@@ -33,7 +33,7 @@ export const removeFromCart = createAsyncThunk(
   }
 );
 
-// Action pour mettre à jour la quantité d'un article dans le panier
+
 export const updateCartItemQuantity = createAsyncThunk(
   "cart/updateCartItemQuantity",
   (payload, thunkAPI) => {
@@ -48,11 +48,11 @@ export const updateCartItemQuantity = createAsyncThunk(
       }
       return item;
     });
-    return updatedCartItems; // Retourner les articles mis à jour après la mise à jour de la quantité
+    return updatedCartItems; 
   }
 );
 
-// Slice de réduction pour le panier
+
 const initialState = {
   cartItems: [],
 };
@@ -69,14 +69,14 @@ export const cart = createSlice({
     builder
       .addCase(addOneToCart.fulfilled, (state, action) => {
         if (action.payload) {
-          state.cartItems.push(action.payload); // Ajouter l'article au panier
+          state.cartItems.push(action.payload); 
         }
       })
       .addCase(removeFromCart.fulfilled, (state, action) => {
-        state.cartItems = action.payload; // Mettre à jour les articles du panier après suppression
+        state.cartItems = action.payload; 
       })
       .addCase(updateCartItemQuantity.fulfilled, (state, action) => {
-        state.cartItems = action.payload; // Mettre à jour les articles du panier après mise à jour de la quantité
+        state.cartItems = action.payload; 
       });
   },
 });

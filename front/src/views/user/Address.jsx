@@ -19,7 +19,7 @@ const AddAddressForm = ({ userId }) => {
 
                 if (response.ok) {
                     const userData = await response.json();
-                    setUserData(userData[0]); // Mettre à jour les données utilisateur avec les données récupérées de l'API
+                    setUserData(userData[0]); 
                 } else {
                     throw new Error('Erreur lors de la récupération de l\'adresse de l\'utilisateur');
                 }

@@ -17,18 +17,18 @@ export default function Cart({ onClose }) {
     }
   };
 
-  // Fonction pour supprimer un article du panier
+  
   const removeItemFromCart = (itemId) => {
-    dispatch(removeFromCart(itemId)); // Dispatchez l'action pour supprimer l'article du panier
-    setSelectedItems(selectedItems.filter((id) => id !== itemId)); // Mettez à jour les articles sélectionnés
+    dispatch(removeFromCart(itemId)); 
+    setSelectedItems(selectedItems.filter((id) => id !== itemId)); 
   };
 
-  // Fonction pour mettre à jour la quantité de l'article dans le panier
+
   const updateItemQuantity = (itemId, newQuantity) => {
     dispatch(updateCartItemQuantity({ itemId, newQuantity })); 
   };
 
-  // Calcul du total du panier
+ 
   const cartTotal = cartItems
     .reduce((total, item) => {
       return total + item.price * item.quantity;
@@ -50,7 +50,7 @@ export default function Cart({ onClose }) {
           {cartItems && cartItems.length > 0 ? (
             cartItems.map((item) => (
               <div
-                key={item.ID} // Utilisez un identifiant unique comme clé
+                key={item.ID} 
                 className={`cart-item ${
                   selectedItems.includes(item.ID) ? "selected" : ""
                 }`}
@@ -92,7 +92,7 @@ export default function Cart({ onClose }) {
             <p>Votre panier est vide</p>
           )}
         </div>
-        {cartItems.length > 0 && ( // Condition pour afficher le bouton de paiement uniquement si le panier n'est pas vide
+        {cartItems.length > 0 && ( 
           <div className="cart-total">
             <p>
               Total : <span>{cartTotal}€</span>

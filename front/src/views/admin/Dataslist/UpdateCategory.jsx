@@ -3,19 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { categoryFetch, updateCategory, deleteCategory } from '../../../store/slice/categorySlice'; 
 
 function UpdateCategory() {
-    const { categories } = useSelector(state => state.categories); // Extraction des catégories depuis le state global avec useSelector
-    const dispatch = useDispatch(); // Initialisation du dispatcher avec useDispatch
-    const [selectedCategory, setSelectedCategory] = useState(null); // État local pour stocker la catégorie sélectionnée
-    const [updatedName, setUpdatedName] = useState(""); // État local pour stocker le nouveau nom de la catégorie
+    const { categories } = useSelector(state => state.categories); 
+    const dispatch = useDispatch(); 
+    const [selectedCategory, setSelectedCategory] = useState(null); 
+    const [updatedName, setUpdatedName] = useState(""); 
 
     useEffect(() => {
-        dispatch(categoryFetch()); // Appel de la fonction d'action categoryFetch pour récupérer les catégories au chargement du composant
-    }, [dispatch]); // Déclenchement de l'effet uniquement au montage du composant
+        dispatch(categoryFetch()); 
+    }, [dispatch]); 
 
     const handleSelectCategory = (categoryId) => {
-        setSelectedCategory(categoryId); // Mise à jour de la catégorie sélectionnée
-        const selectedCategory = categories.find(item => item.ID === categoryId); // Recherche de la catégorie correspondante dans la liste
-        setUpdatedName(selectedCategory.name); // Mise à jour du nom de la catégorie sélectionnée
+        setSelectedCategory(categoryId); 
+        const selectedCategory = categories.find(item => item.ID === categoryId); 
+        setUpdatedName(selectedCategory.name); 
     }
 
     const handleSaveChanges = () => {
@@ -28,7 +28,7 @@ function UpdateCategory() {
             .then(() => {
                 setSelectedCategory(null);
                 setUpdatedName("");
-                dispatch(categoryFetch()); // Mettre à jour les catégories après la modification
+                dispatch(categoryFetch()); 
             })
             .catch((error) => {
                 console.error("Erreur lors de la modification de la catégorie :", error);
@@ -41,7 +41,7 @@ function UpdateCategory() {
             dispatch(deleteCategory(selectedCategory))
             .then(() => {
                 setSelectedCategory(null);
-                dispatch(categoryFetch()); // Mettre à jour les catégories après la suppression
+                dispatch(categoryFetch()); 
             })
             .catch((error) => {
                 console.error("Erreur lors de la suppression de la catégorie :", error);

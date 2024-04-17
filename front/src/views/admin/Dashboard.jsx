@@ -8,19 +8,19 @@ const Dashboard = () => {
     <div className='dashboard-container'>
       <h1>Dashboard</h1>
       <div className='container category'>
-      <Link to="/admin/dashboard/categories">Ajouter une catégorie</Link> {/* Lien vers la route AddCategory */}
+      <Link to="/admin/dashboard/categories">Ajouter une catégorie</Link> 
       </div>
       <div className='container modify-category'>
-      <Link to="/admin/dashboard/categories/modifier">Modifier une catégorie</Link> {/* Lien vers la route AddCategory */}
+      <Link to="/admin/dashboard/categories/modifier">Modifier une catégorie</Link> 
       </div>
       <div className='container article'>
-      <Link to="/admin/dashboard/articles/ajouter">Ajouter un article</Link> {/* Lien vers la route AddArticles*/}
+      <Link to="/admin/dashboard/articles/ajouter">Ajouter un article</Link> 
       </div>
       <div className='container modify-article'>
         <Link to="/admin/dashboard/articles/modifier">Modifier un article</Link>
       </div>
       <div className='container stats'>
-      <Link to="/admin/dashboard/statistiques">Statistiques</Link> {/* Lien vers la route AddArticles*/}
+      <Link to="/admin/dashboard/statistiques">Statistiques</Link> 
       </div>
     </div>
   );

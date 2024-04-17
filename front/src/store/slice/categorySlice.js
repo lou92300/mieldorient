@@ -100,8 +100,8 @@ const categorySlice = createSlice({
       .addCase(deleteCategory.fulfilled, (state, action) => { 
         state.loading = false;
         const deletedCategoryId = action.payload.id; 
-        console.log(deleteCategory)
-        state.categories = state.categories.filter(category => category.id !== deletedCategoryId); // Supprime l'article de l'état
+        
+        state.categories = state.categories.filter(category => category.id !== deletedCategoryId); 
       })
       .addCase(deleteCategory.rejected, (state, action) => { 
         state.error = action.error.message; 
@@ -110,4 +110,4 @@ const categorySlice = createSlice({
   },
 });
 
-export default categorySlice.reducer; // Exportez le reducer de la slice
+export default categorySlice.reducer; 
